@@ -1,20 +1,20 @@
+/* BASIC */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 body {
   height: 100vh;
   overflow: hidden;
-  background: radial-gradient(circle at top, #ff758c, #ff7eb3);
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
 }
 
 canvas {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
 }
 
 .container {
@@ -25,58 +25,34 @@ canvas {
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255,255,255,0.2);
   backdrop-filter: blur(15px);
   padding: 40px;
   border-radius: 25px;
   text-align: center;
   color: white;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s;
 }
 
-.card:hover {
-  transform: rotateX(8deg) rotateY(-8deg);
-}
-
-h1 {
-  font-size: 2.6rem;
-  margin-bottom: 15px;
-}
-
-.subtitle {
-  font-size: 1.2rem;
-  margin-bottom: 25px;
-}
-
+/* INPUT & BUTTONS */
 input {
-  padding: 15px;
+  padding: 12px;
   width: 80%;
-  border-radius: 30px;
+  border-radius: 25px;
   border: none;
-  font-size: 1.1rem;
-  text-align: center;
-  outline: none;
+  margin-top: 15px;
 }
 
 button {
-  margin-top: 20px;
-  padding: 15px 35px;
-  font-size: 1.1rem;
-  border-radius: 50px;
+  padding: 12px 30px;
+  border-radius: 25px;
   border: none;
+  margin-top: 15px;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-#start, #yes {
+#yes {
   background: #ff4d6d;
   color: white;
-}
-
-#start:hover, #yes:hover {
-  transform: scale(1.1);
-  background: #ff1f4c;
 }
 
 #no {
@@ -86,16 +62,56 @@ button {
 
 .buttons {
   display: flex;
+  gap: 15px;
   justify-content: center;
-  gap: 20px;
 }
 
-#response {
-  margin-top: 25px;
-  font-size: 1.3rem;
-  font-weight: bold;
-}
-
+/* HIDDEN */
 .hidden {
-  display: none;
+  display: none !important;
+}
+
+/* MODAL */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+}
+
+#closeModal {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.gallery {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.gallery img {
+  width: 30%;
+  border-radius: 10px;
+}
+
+#letterText {
+  font-size: 1rem;
+  line-height: 1.5;
 }

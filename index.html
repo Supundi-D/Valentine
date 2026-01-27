@@ -12,15 +12,13 @@
 
 <div class="container">
 
-  <!-- Intro -->
   <div class="card" id="intro">
     <h1>💌 Hello</h1>
     <p class="subtitle">What’s your name?</p>
-    <input type="text" id="nameInput" placeholder="Enter your name 💕" />
+    <input type="text" id="nameInput" placeholder="Enter your name 💕">
     <button id="start">Continue</button>
   </div>
 
-  <!-- Main -->
   <div class="card hidden" id="main">
     <h1 id="typeText"></h1>
     <p class="subtitle" id="subText"></p>
@@ -29,10 +27,25 @@
       <button id="yes">Yes 💖</button>
       <button id="no">No 😅</button>
     </div>
-
-    <p id="response"></p>
   </div>
 
+</div>
+
+<!-- LOVE LETTER MODAL -->
+<div id="loveModal" class="modal hidden">
+  <div class="modal-content">
+    <span id="closeModal">&times;</span>
+
+    <h2>💖 My Love Letter 💖</h2>
+
+    <div class="gallery">
+      <img src="images/img1.jpg">
+      <img src="images/img2.jpg">
+      <img src="images/img3.jpg">
+    </div>
+
+    <p id="letterText"></p>
+  </div>
 </div>
 
 <script src="script.js"></script>
