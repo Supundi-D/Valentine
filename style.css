@@ -1,15 +1,23 @@
-/* BASIC */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
+  transition: all 0.35s ease;
 }
 
 body {
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  background: linear-gradient(270deg, #ff758c, #ff7eb3, #ffa6c9);
+  background-size: 600% 600%;
+  animation: bgMove 12s ease infinite;
+}
+
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 canvas {
@@ -26,28 +34,58 @@ canvas {
 
 .card {
   background: rgba(255,255,255,0.2);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(18px);
   padding: 40px;
   border-radius: 25px;
   text-align: center;
   color: white;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  animation: cardIn 0.8s ease forwards;
 }
 
-/* INPUT & BUTTONS */
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.subtitle {
+  margin: 15px 0;
+  font-size: 1.2rem;
+}
+
 input {
-  padding: 12px;
+  padding: 14px;
   width: 80%;
   border-radius: 25px;
   border: none;
   margin-top: 15px;
+  font-size: 1rem;
+  text-align: center;
 }
 
 button {
-  padding: 12px 30px;
-  border-radius: 25px;
+  padding: 14px 35px;
+  border-radius: 30px;
   border: none;
-  margin-top: 15px;
   cursor: pointer;
+  margin-top: 20px;
+  font-size: 1.1rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+button:hover {
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+
+button:active {
+  transform: scale(0.95);
 }
 
 #yes {
@@ -62,20 +100,20 @@ button {
 
 .buttons {
   display: flex;
-  gap: 15px;
+  gap: 20px;
   justify-content: center;
 }
 
-/* HIDDEN */
 .hidden {
   display: none !important;
 }
 
-/* MODAL */
+/* Modal */
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,19 +122,36 @@ button {
 
 .modal-content {
   background: white;
-  padding: 25px;
-  border-radius: 20px;
+  padding: 30px;
+  border-radius: 25px;
   width: 90%;
-  max-width: 400px;
+  max-width: 420px;
   text-align: center;
   position: relative;
+  animation: modalIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 40px rgba(255, 77, 109, 0.6);
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.7) translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-content h2 {
+  color: #ff4d6d;
 }
 
 #closeModal {
   position: absolute;
-  right: 15px;
-  top: 10px;
-  font-size: 24px;
+  right: 18px;
+  top: 12px;
+  font-size: 26px;
   cursor: pointer;
 }
 
@@ -108,10 +163,41 @@ button {
 
 .gallery img {
   width: 30%;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 #letterText {
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.6;
+}
+
+/* Sparkles */
+.sparkle {
+  position: absolute;
+  font-size: 22px;
+  animation: float 2s ease forwards;
+  pointer-events: none;
+}
+/* Typing cursor */
+.cursor {
+  display: inline-block;
+  margin-left: 4px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120px) scale(1.6);
+    opacity: 0;
+  }
 }
