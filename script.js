@@ -1,3 +1,10 @@
+/* Vibration Helper */
+function vibrate(pattern) {
+  if ("vibrate" in navigator) {
+    navigator.vibrate(pattern);
+  }
+}
+
 /* Elements */
 const intro = document.getElementById("intro");
 const main = document.getElementById("main");
@@ -10,13 +17,16 @@ const yesBtn = document.getElementById("yes");
 const noBtn = document.getElementById("no");
 const response = document.getElementById("response");
 
-/* Start Button */
+/* Start */
 startBtn.onclick = () => {
   const name = nameInput.value.trim();
   if (!name) {
     alert("Please enter your name 💕");
+    vibrate(200);
     return;
   }
+
+  vibrate([100, 50, 100]);
 
   intro.classList.add("hidden");
   main.classList.remove("hidden");
@@ -39,25 +49,33 @@ function startTyping(name) {
   }
   typing();
 
-  subText.innerHTML = `${name}, you make my heart smile every single day ✨`;
+  subText.innerHTML = `${name}, you make my heart smile every day ✨`;
 }
 
 /* Buttons */
 yesBtn.onclick = () => {
-  response.innerHTML = "Yayyy! 💕 This just became my favorite Valentine ever 🥰";
+  vibrate([200, 100, 200, 100, 300]);
+  response.innerHTML =
+    "Yayyy! 💕 This just became my favorite Valentine ever 🥰";
 };
 
 noBtn.onmouseover = () => {
+  vibrate(100);
   noBtn.style.position = "absolute";
   noBtn.style.left = Math.random() * 80 + "%";
   noBtn.style.top = Math.random() * 80 + "%";
 };
 
-/* Heart Particles */
+/* Hearts Animation */
 const canvas = document.getElementById("hearts");
 const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.onresize = resize;
 
 let hearts = [];
 
