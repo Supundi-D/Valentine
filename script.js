@@ -14,14 +14,42 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeModal = document.getElementById("closeModal");
   const letterText = document.getElementById("letterText");
 
+  const bgMusic = document.getElementById("bgMusic");
+  const musicToggle = document.getElementById("musicToggle");
+
   let userName = "";
+  let musicPlaying = false;
 
   /* Vibration */
   function vibrate(p) {
     if (navigator.vibrate) navigator.vibrate(p);
   }
 
-  /* Sparkle */
+  /* Fade Music */
+  function fadeInMusic() {
+    bgMusic.volume = 0;
+    bgMusic.play();
+    let v = 0;
+    const fade = setInterval(() => {
+      v += 0.02;
+      bgMusic.volume = Math.min(v, 0.6);
+      if (v >= 0.6) clearInterval(fade);
+    }, 100);
+  }
+
+  function fadeOutMusic() {
+    let v = bgMusic.volume;
+    const fade = setInterval(() => {
+      v -= 0.02;
+      bgMusic.volume = Math.max(v, 0);
+      if (v <= 0) {
+        bgMusic.pause();
+        clearInterval(fade);
+      }
+    }, 100);
+  }
+
+  /* Sparkles */
   function sparkle(x, y) {
     const s = document.createElement("div");
     s.className = "sparkle";
@@ -33,23 +61,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* Typing Effect */
-  function typeWriter(element, text, speed = 80, callback) {
+  function typeWriter(el, text, speed = 80, cb) {
     let i = 0;
-    element.innerHTML = "";
+    el.innerHTML = "";
 
     const cursor = document.createElement("span");
     cursor.className = "cursor";
-    cursor.innerHTML = "|";
-    element.appendChild(cursor);
+    cursor.innerText = "|";
+    el.appendChild(cursor);
 
     function type() {
       if (i < text.length) {
         cursor.insertAdjacentText("beforebegin", text.charAt(i));
         i++;
         setTimeout(type, speed);
-      } else {
-        if (callback) callback();
-      }
+      } else if (cb) cb();
     }
     type();
   }
@@ -63,23 +89,20 @@ document.addEventListener("DOMContentLoaded", () => {
     intro.classList.add("hidden");
     main.classList.remove("hidden");
 
-    typeWriter(
-      typeText,
-      `Hey ${userName} ❤️`,
-      90,
-      () => {
-        typeWriter(
-          subText,
-          "Will you be my Valentine?",
-          70
-        );
-      }
-    );
+    if (!musicPlaying) {
+      fadeInMusic();
+      musicPlaying = true;
+      musicToggle.innerText = "🔊";
+    }
+
+    typeWriter(typeText, `Hey ${userName} ❤️`, 90, () => {
+      typeWriter(subText, "Will you be my Valentine?", 70);
+    });
   };
 
   /* YES */
   yesBtn.onclick = (e) => {
-    vibrate([200, 100, 200, 100, 300]);
+    vibrate([200,100,200,100,300]);
 
     for (let i = 0; i < 8; i++) {
       sparkle(
@@ -90,12 +113,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     letterText.innerHTML = `
       Dear ${userName},<br><br>
-      From the moment you came into my life,
+      From the moment you entered my life,
       everything felt warmer and brighter.
-      You are my favorite thought, my calm,
-      and my happiness 💕<br><br>
-      Thank you for choosing me.<br>
-      Happy Valentine's Day ❤️
+      You are my calm, my joy, and my favorite
+      part of every day 💕<br><br>
+      Happy Valentine’s Day ❤️
     `;
 
     modal.classList.remove("hidden");
@@ -109,9 +131,20 @@ document.addEventListener("DOMContentLoaded", () => {
     noBtn.style.top = Math.random() * 70 + "%";
   };
 
-  /* MODAL CLOSE */
-  closeModal.onclick = () => modal.classList.add("hidden");
+  /* Music Toggle */
+  musicToggle.onclick = () => {
+    if (musicPlaying) {
+      fadeOutMusic();
+      musicToggle.innerText = "🔈";
+    } else {
+      fadeInMusic();
+      musicToggle.innerText = "🔊";
+    }
+    musicPlaying = !musicPlaying;
+  };
 
+  /* Close Modal */
+  closeModal.onclick = () => modal.classList.add("hidden");
   modal.onclick = (e) => {
     if (e.target === modal) modal.classList.add("hidden");
   };
