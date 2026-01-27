@@ -112,13 +112,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     letterText.innerHTML = `
-      Dear ${userName},<br><br>
-      From the moment you entered my life,
-      everything felt warmer and brighter.
-      You are my calm, my joy, and my favorite
-      part of every day 💕<br><br>
-      Happy Valentine’s Day ❤️
-    `;
+    Dear ${userName},<br><br>
+    From the moment you entered my life, everything began to change in
+    the most beautiful way. The world felt warmer, brighter, and full
+    of meaning because of you. 💕<br><br>
+  
+    You are my calm on the loudest days, my joy in the simplest moments,
+    and the person my heart always finds its way back to. Every smile,
+    every word, and every second with you feels like something I want
+    to hold onto forever.<br><br>
+  
+    Thank you for being you, for choosing me, and for making my days
+    better just by being in them. I can't imagine my world without you. ❤️<br><br>
+  
+    Happy Valentine's Day, my favorite person 🌹
+  `;
+  
 
     modal.classList.remove("hidden");
   };
