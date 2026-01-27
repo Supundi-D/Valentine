@@ -1,25 +1,50 @@
-/* Typing Effect */
-const text = "Will you be my Valentine? ❤️";
-let i = 0;
-const speed = 100;
+/* Elements */
+const intro = document.getElementById("intro");
+const main = document.getElementById("main");
+const nameInput = document.getElementById("nameInput");
+const startBtn = document.getElementById("start");
+
 const typeText = document.getElementById("typeText");
-
-function typing() {
-  if (i < text.length) {
-    typeText.innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typing, speed);
-  }
-}
-typing();
-
-/* Button Logic */
+const subText = document.getElementById("subText");
 const yesBtn = document.getElementById("yes");
 const noBtn = document.getElementById("no");
 const response = document.getElementById("response");
 
+/* Start Button */
+startBtn.onclick = () => {
+  const name = nameInput.value.trim();
+  if (!name) {
+    alert("Please enter your name 💕");
+    return;
+  }
+
+  intro.classList.add("hidden");
+  main.classList.remove("hidden");
+
+  startTyping(name);
+};
+
+/* Typing Effect */
+function startTyping(name) {
+  const text = `Hey ${name} ❤️ Will you be my Valentine?`;
+  let i = 0;
+  typeText.innerHTML = "";
+
+  function typing() {
+    if (i < text.length) {
+      typeText.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing, 80);
+    }
+  }
+  typing();
+
+  subText.innerHTML = `${name}, you make my heart smile every single day ✨`;
+}
+
+/* Buttons */
 yesBtn.onclick = () => {
-  response.innerHTML = "Yayyy! You just made my heart the happiest 💕🥰";
+  response.innerHTML = "Yayyy! 💕 This just became my favorite Valentine ever 🥰";
 };
 
 noBtn.onmouseover = () => {

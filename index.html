@@ -10,9 +10,20 @@
 <canvas id="hearts"></canvas>
 
 <div class="container">
-  <div class="card">
+
+  <!-- Name Input Screen -->
+  <div class="card" id="intro">
+    <h1>💌 Hello there</h1>
+    <p class="subtitle">Tell me your name first</p>
+
+    <input type="text" id="nameInput" placeholder="Enter your name 💕" />
+    <button id="start">Continue</button>
+  </div>
+
+  <!-- Valentine Screen -->
+  <div class="card hidden" id="main">
     <h1 id="typeText"></h1>
-    <p class="subtitle">Every moment with you feels magical ✨</p>
+    <p class="subtitle" id="subText"></p>
 
     <div class="buttons">
       <button id="yes">Yes 💖</button>
@@ -21,6 +32,7 @@
 
     <p id="response"></p>
   </div>
+
 </div>
 
 <script src="script.js"></script>
