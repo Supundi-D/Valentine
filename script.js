@@ -20,6 +20,20 @@ document.addEventListener("DOMContentLoaded", () => {
   let userName = "";
   let musicPlaying = false;
 
+  function rainbowHeart() {
+    const hearts = ["💖","💜","💙","💚","💛","🧡"];
+    const h = document.createElement("div");
+    h.className = "rainbow-heart";
+    h.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.bottom = "-30px";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 4000);
+  }
+  
+  setInterval(rainbowHeart, 400);
+  
+
   /* Vibration */
   function vibrate(p) {
     if (navigator.vibrate) navigator.vibrate(p);
