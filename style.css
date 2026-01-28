@@ -108,7 +108,6 @@ button:active {
   display: none !important;
 }
 
-/* Modal */
 .modal {
   position: fixed;
   inset: 0;
@@ -171,21 +170,19 @@ button:active {
   line-height: 1.6;
 }
 
-/* Sparkles */
 .sparkle {
   position: absolute;
   font-size: 22px;
   animation: float 2s ease forwards;
   pointer-events: none;
 }
-/* Typing cursor */
+
 .cursor {
   display: inline-block;
   margin-left: 4px;
   animation: blink 1s infinite;
 }
 
-/* Music Button */
 .music-btn {
   position: fixed;
   bottom: 20px;
@@ -206,12 +203,10 @@ button:active {
   transform: scale(1.1);
 }
 
-
 @keyframes blink {
   0%, 50%, 100% { opacity: 1; }
   25%, 75% { opacity: 0; }
 }
-
 
 @keyframes float {
   0% {
