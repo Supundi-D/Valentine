@@ -147,12 +147,21 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   /* NO */
-  noBtn.onmouseover = () => {
-    vibrate(80);
-    noBtn.style.position = "absolute";
-    noBtn.style.left = Math.random() * 70 + "%";
-    noBtn.style.top = Math.random() * 70 + "%";
-  };
+let noHoverCount = 0;
+
+noBtn.onmouseover = () => {
+  noHoverCount++;
+
+  // First hover: do nothing (stay stable)
+  if (noHoverCount === 1) return;
+
+  // From second hover onward: run away 😅
+  vibrate(80);
+  noBtn.style.position = "absolute";
+  noBtn.style.left = Math.random() * 70 + "%";
+  noBtn.style.top = Math.random() * 70 + "%";
+};
+
 
   /* Music Toggle */
   musicToggle.onclick = () => {
