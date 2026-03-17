@@ -159,17 +159,41 @@ yesScale = Math.min(yesScale, 2.0);
   /* NO */
 let noHoverCount = 0;
 
-noBtn.onmouseover = () => {
+
+noBtn.onmouseover = (e) => {
   noHoverCount++;
 
-  // First hover: do nothing (stay stable)
+  // First hover: stay still
   if (noHoverCount === 1) return;
 
-  // From second hover onward: run away 😅
   vibrate(80);
+
+  const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
+
+  const cursorX = e.clientX;
+  const cursorY = e.clientY;
+
+  let newX;
+  let newY;
+
+  // Move to opposite horizontal side
+  if (cursorX < screenWidth / 2) {
+    newX = screenWidth - 150; // right side
+  } else {
+    newX = 50; // left side
+  }
+
+  // Move to opposite vertical side
+  if (cursorY < screenHeight / 2) {
+    newY = screenHeight - 150; // bottom
+  } else {
+    newY = 50; // top
+  }
+
   noBtn.style.position = "absolute";
-  noBtn.style.left = Math.random() * 70 + "%";
-  noBtn.style.top = Math.random() * 70 + "%";
+  noBtn.style.left = newX + "px";
+  noBtn.style.top = newY + "px";
 };
 
 
