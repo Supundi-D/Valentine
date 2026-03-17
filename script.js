@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const bgMusic = document.getElementById("bgMusic");
   const musicToggle = document.getElementById("musicToggle");
 
+  let yesScale = 1;
+
   let userName = "";
   let musicPlaying = false;
 
@@ -145,6 +147,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     modal.classList.remove("hidden");
   };
+
+  // increase Yes button size a bit
+yesScale += 0.1; 
+yesBtn.style.transform = `scale(${yesScale})`;
+yesBtn.style.transition = "transform 0.2s ease";
+
+yesScale = Math.min(yesScale, 2.0);
+
 
   /* NO */
 let noHoverCount = 0;
